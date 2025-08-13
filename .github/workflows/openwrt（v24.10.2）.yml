@@ -1,4 +1,4 @@
-name: ImmortalWrt Image Builder (v24.10.2)
+name: OpenWrt Image Builder (v24.10.2)
 on:
   push:
     branches: [ "master" ]
@@ -77,14 +77,14 @@ jobs:
     - name: Upload firmware
       uses: actions/upload-artifact@v4
       with:
-        name: ImmortalWrt-firmware-${{ env.PROFILE }}-${{ env.FILE_DATE }}
+        name: OpenWrt-firmware-${{ env.PROFILE }}-${{ env.FILE_DATE }}
         path: /tmp/bin_firmware
 
     - name: Create Release and Upload Firmware
       uses: softprops/action-gh-release@v2
       with:
         tag_name: "auto-release-${{ env.FILE_DATE }}"
-        name: "ImmortalWrt-${{ env.PROFILE }}-${{ env.FILE_DATE }}"
+        name: "OpenWrt-${{ env.PROFILE }}-${{ env.FILE_DATE }}"
         body: |
           自动发布固件，PROFILE=${{ env.PROFILE }}，构建时间=${{ env.FILE_DATE }}
         files: /tmp/bin_firmware/*
